@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2c3e50;
+}
+
+#game-container {
+    width: 800px;
+    height: 350px;
+    background-color: #87CEEB; /* Sky Blue */
+    position: relative;
+    overflow: hidden;
+    border: 5px solid #34495e;
+}
+
+#ground {
+    width: 100%;
+    height: 40px;
+    background-color: #2ecc71; /* Green Grass */
+    position: absolute;
+    bottom: 0;
+    border-top: 4px solid #27ae60;
+}
+
+#player {
+    width: 80px;
+    height: 80px;
+    background-image: url('skeleton-03_run_00.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 10px; /* Adjusted to make feet touch the grass */
+    left: 50px;
+    z-index: 2;
+}
+
+#score-board {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.obstacle {
+    width: 45px;
+    height: 45px;
+    background-color: #34495e; /* You can replace this with a rock image later */
+    border-radius: 8px;
+    position: absolute;
+    bottom: 40px; /* Positioned exactly on the line between sky and ground */
+    right: -50px;
+    animation: move-obstacle 1.5s linear;
+}
+
+@keyframes move-obstacle {
+    0% { right: -50px; }
+    100% { right: 100%; }
+}
+
+.jump-animation {
+    animation: jump-keyframes 0.6s ease-out;
+}
+
+@keyframes jump-keyframes {
+    0% { bottom: 10px; }
+    40% { bottom: 150px; }
+    60% { bottom: 150px; }
+    100% { bottom: 10px; }
+}
