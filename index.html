@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="game-container" id="gameBoard">
-        <header class="game-info">
-            <div class="score">Score: <span id="scoreVal">0</span></div>
+    <div class="game-wrapper">
+        <header class="game-header">
+            <div class="score-board">Score: <span id="scoreVal">0</span></div>
             <h1>Robot Jumping Game</h1>
         </header>
 
-        <div id="robot" class="robot"></div>
-        <div class="overlay" id="startOverlay">
-            <button id="startBtn">Start Game</button>
-        </div>
-    </main>
+        <main id="gameBoard" class="game-board">
+            <div id="robot" class="robot"></div>
+        </main>
 
+        <div id="startOverlay" class="overlay">
+            <div class="modal">
+                <h2>Ready for the Challenge?</h2>
+                <p>Press Space or Click to Jump</p>
+                <button id="startBtn">Start Game</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
