@@ -4,8 +4,8 @@ const startBtn = document.getElementById('startBtn');
 const startOverlay = document.getElementById('startOverlay');
 const scoreVal = document.getElementById('scoreVal');
 
-const jumpSound = new Audio('jump.mp3');
-const bgMusic = new Audio('music.mp3');
+const jumpSound = new Audio('assets/jump.mp3.wav');
+const bgMusic = new Audio('assets/music.mp3.wav');
 bgMusic.loop = true;
 
 let score = 0;
