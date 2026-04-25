@@ -1,4 +1,4 @@
-# Skeleton Runner Game
+# Robot Jumping Game
 
 A simple 2D web-based jumping game created using HTML, CSS, and JavaScript.
 
