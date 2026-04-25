@@ -71,9 +71,9 @@ function checkCollision() {
         const obstacleRect = obstacle.getBoundingClientRect();
 
         if (
-            robotRect.right - 10 > obstacleRect.left &&
-            robotRect.left + 10 < obstacleRect.right &&
-            robotRect.bottom > obstacleRect.top + 10 &&
+            robotRect.right - 15 > obstacleRect.left &&
+            robotRect.left + 15 < obstacleRect.right &&
+            robotRect.bottom > obstacleRect.top + 15 &&
             robotRect.top < obstacleRect.bottom
         ) {
             gameOver();
