@@ -10,16 +10,44 @@ body {
 #game-container {
     width: 800px;
     height: 350px;
-    background-color: #87CEEB; /* Sky Blue */
+    background-color: #87CEEB;
     position: relative;
     overflow: hidden;
     border: 5px solid #34495e;
 }
 
+#start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+#start-button {
+    padding: 15px 40px;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    background-color: #c0392b;
+}
+
 #ground {
     width: 100%;
     height: 40px;
-    background-color: #2ecc71; /* Green Grass */
+    background-color: #2ecc71;
     position: absolute;
     bottom: 0;
     border-top: 4px solid #27ae60;
@@ -32,7 +60,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    bottom: 10px; /* Adjusted to make feet touch the grass */
+    bottom: 10px;
     left: 50px;
     z-index: 2;
 }
@@ -43,25 +71,23 @@ body {
     left: 15px;
     color: #ffffff;
     font-family: Arial, sans-serif;
-    font-weight: bold;
     font-size: 24px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     z-index: 10;
 }
 
 .obstacle {
-    width: 45px;
-    height: 45px;
-    background-color: #34495e; /* You can replace this with a rock image later */
-    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
     position: absolute;
-    bottom: 40px; /* Positioned exactly on the line between sky and ground */
-    right: -50px;
+    bottom: 40px;
+    right: -100px;
     animation: move-obstacle 1.5s linear;
 }
 
 @keyframes move-obstacle {
-    0% { right: -50px; }
+    0% { right: -100px; }
     100% { right: 100%; }
 }
 
@@ -71,7 +97,7 @@ body {
 
 @keyframes jump-keyframes {
     0% { bottom: 10px; }
-    40% { bottom: 150px; }
-    60% { bottom: 150px; }
+    40% { bottom: 170px; }
+    60% { bottom: 170px; }
     100% { bottom: 10px; }
 }

@@ -1,12 +1,35 @@
 const player = document.getElementById("player");
 const gameContainer = document.getElementById("game-container");
 const scoreBoard = document.getElementById("score-board");
+const startScreen = document.getElementById("start-screen");
+const startButton = document.getElementById("start-button");
 
 let score = 0;
 let isGameOver = false;
+let gameLoop;
+let isGameRunning = false;
+
+const obstacleData = [
+    { url: "url('Tree 0141.png')", width: "35px", height: "70px" },
+    { url: "url('Tree 0151.png')", width: "45px", height: "60px" },
+    { url: "url('Bush 16x161.png')", width: "30px", height: "30px" }
+];
+
+function startGame() {
+    startScreen.style.display = "none";
+    isGameRunning = true;
+    score = 0;
+    scoreBoard.innerText = `Score: ${score}`;
+    
+    spawnObstacle();
+    
+    gameLoop = setInterval(checkCollisions, 10);
+}
+
+startButton.addEventListener("click", startGame);
 
 function jump() {
-    if (isGameOver) return;
+    if (isGameOver || !isGameRunning) return;
     
     if (!player.classList.contains("jump-animation")) {
         player.classList.add("jump-animation");
@@ -28,10 +51,17 @@ document.addEventListener("keydown", (event) => {
 });
 
 function spawnObstacle() {
-    if (isGameOver) return;
+    if (isGameOver || !isGameRunning) return;
 
     const obstacle = document.createElement("div");
     obstacle.classList.add("obstacle");
+    
+    const randomType = obstacleData[Math.floor(Math.random() * obstacleData.length)];
+    
+    obstacle.style.backgroundImage = randomType.url;
+    obstacle.style.width = randomType.width;
+    obstacle.style.height = randomType.height;
+    
     gameContainer.appendChild(obstacle);
 
     setTimeout(() => {
@@ -46,7 +76,7 @@ function spawnObstacle() {
     setTimeout(spawnObstacle, nextSpawn);
 }
 
-const gameLoop = setInterval(() => {
+function checkCollisions() {
     if (isGameOver) return;
 
     const playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
@@ -54,18 +84,20 @@ const gameLoop = setInterval(() => {
 
     obstacles.forEach(obs => {
         const obsLeft = obs.offsetLeft;
+        const obsWidth = obs.offsetWidth;
+        const obsHeight = obs.offsetHeight;
         
-        // Collision Detection:
-        // Player is at left 50px. Obstacle is at bottom 40px.
-        // We check if obstacle is in player's X-range and if player is low enough to hit it.
-        if (obsLeft > 50 && obsLeft < 110 && playerBottom < 85) {
+        if (obsLeft < 110 && obsLeft + obsWidth > 50 && playerBottom < 40 + obsHeight - 10) {
             handleGameOver();
         }
     });
-}, 10);
+}
 
 function handleGameOver() {
     isGameOver = true;
+    isGameRunning = false;
+    clearInterval(gameLoop);
+    
     player.style.backgroundImage = "url('skeleton-08_get_hit_01.png')";
     
     const obstacles = document.querySelectorAll(".obstacle");
@@ -77,5 +109,3 @@ function handleGameOver() {
         location.reload();
     }, 150);
 }
-
-spawnObstacle();
