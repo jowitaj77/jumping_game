@@ -11,7 +11,7 @@ bgMusic.loop = true;
 let score = 0;
 let isJumping = false;
 let gameActive = false;
-
+let obstacleTimeout;
 
 function jump() {
     if (isJumping || !gameActive) return;
@@ -19,50 +19,58 @@ function jump() {
     isJumping = true;
     robot.classList.add('jump-animation');
     
-
     jumpSound.currentTime = 0;
-    jumpSound.play();
+    jumpSound.play().catch(() => {});
 
     setTimeout(() => {
         robot.classList.remove('jump-animation');
         isJumping = false;
-    }, 500);
+    }, 600); 
 }
 
-function createObstacle() {
+function spawnObstacle() {
     if (!gameActive) return;
 
     const obstacle = document.createElement('div');
     obstacle.classList.add('obstacle');
     gameBoard.appendChild(obstacle);
 
-    let randomDelay = Math.floor(Math.random() * 1300) + 1200;
-
+    const nextSpawn = Math.floor(Math.random() * 1300) + 1200;
 
     obstacle.addEventListener('animationend', () => {
+        if (gameActive) {
+            score++;
+            scoreVal.textContent = score;
+        }
         obstacle.remove();
-        score++;
-        scoreVal.innerText = score;
     });
 
-    setTimeout(createObstacle, randomDelay);
+    obstacleTimeout = setTimeout(spawnObstacle, nextSpawn);
 }
 
 function startGame() {
     gameActive = true;
     score = 0;
-    scoreVal.innerText = score;
+    scoreVal.textContent = score;
     startOverlay.style.display = 'none';
     
-    bgMusic.play().catch(err => console.log("Music autoplay blocked"));
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(() => {});
     
-    createObstacle();
+    spawnObstacle();
 }
 
-
 window.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') jump();
+    if (e.code === 'Space') {
+        e.preventDefault();
+        jump();
+    }
 });
 
-gameBoard.addEventListener('click', jump);
+gameBoard.addEventListener('mousedown', (e) => {
+    if (e.target !== startBtn) {
+        jump();
+    }
+});
+
 startBtn.addEventListener('click', startGame);
