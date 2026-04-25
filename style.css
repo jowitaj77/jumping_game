@@ -30,7 +30,7 @@ body {
 .game-board {
     width: 800px;
     height: 300px;
-    background-color: #444;
+    background-color: #87CEEB;
     border-bottom: 5px solid #00ff00;
     position: relative;
     overflow: hidden;
@@ -41,10 +41,19 @@ body {
     height: 60px;
     background-image: url("assets/skeleton-03_run_00.png");
     background-size: contain;
+    background-position: bottom center;
     background-repeat: no-repeat;
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 50px;
+}
+
+.robot-jump {
+    background-image: url("assets/skeleton-04_jump_00.png");
+}
+
+.robot-dead {
+    background-image: url("assets/skeleton-08_get_hit_01.png");
 }
 
 .jump-animation {
@@ -52,17 +61,17 @@ body {
 }
 
 @keyframes jump-frames {
-    0% { bottom: 0; }
-    40% { bottom: 150px; }
-    60% { bottom: 150px; }
-    100% { bottom: 0; }
+    0% { bottom: -5px; }
+    40% { bottom: 140px; }
+    60% { bottom: 140px; }
+    100% { bottom: -5px; }
 }
 
 .obstacle {
     width: 40px;
     height: 40px;
-    background-image: url("assets/Bush 16x161.png");
     background-size: contain;
+    background-position: bottom center;
     background-repeat: no-repeat;
     position: absolute;
     bottom: 0;
