@@ -29,16 +29,16 @@ body {
 
 .game-board {
     width: 800px;
-    height: 300px;
+    height: 450px; 
     background-color: #87CEEB;
-    border-bottom: 5px solid #00ff00;
+    border-bottom: 8px solid #00ff00;
     position: relative;
     overflow: hidden;
 }
 
 .robot {
-    width: 60px;
-    height: 60px;
+    width: 90px; 
+    height: 90px; 
     background-image: url("assets/skeleton-03_run_00.png");
     background-size: contain;
     background-position: bottom center;
@@ -62,26 +62,26 @@ body {
 
 @keyframes jump-frames {
     0% { bottom: -5px; }
-    40% { bottom: 140px; }
-    60% { bottom: 140px; }
+    40% { bottom: 210px; } 
+    60% { bottom: 210px; }
     100% { bottom: -5px; }
 }
 
 .obstacle {
-    width: 40px;
-    height: 40px;
+    width: 60px; 
+    height: 60px; 
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
     position: absolute;
     bottom: 0;
-    right: -50px;
+    right: -70px; 
     animation: move-obstacle 2s linear forwards;
 }
 
 @keyframes move-obstacle {
-    from { right: -50px; }
-    to { right: 850px; }
+    from { right: -70px; }
+    to { right: 870px; }
 }
 
 .overlay {
@@ -90,7 +90,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.6);
     display: flex;
     justify-content: center;
     align-items: center;
